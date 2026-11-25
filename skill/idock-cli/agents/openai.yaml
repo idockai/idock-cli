@@ -1,0 +1,7 @@
+interface:
+  display_name: "iDock 录音助手"
+  short_description: "查询 iDock 录音和闪记、检索知识、导出文档并跟踪音频转写"
+  default_prompt: "使用 $idock-cli 帮我查找最近一周的录音，并总结我指定会议的纪要和待办。"
+
+policy:
+  allow_implicit_invocation: true
