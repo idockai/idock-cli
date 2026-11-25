@@ -20,6 +20,7 @@ https://github.com/idockai/idock-cli
 
 请先阅读 README 中的安装和 Agent Skill 配置说明，在当前 Agent 实际
 执行命令的环境安装 @gdpisen/idock-cli，并配置当前 AI 的 idock-cli Skill。
+先下载 GitHub 1.2.3 安装包；下载失败才使用 npm latest，并按下文设置正式服务地址。
 已有同名 Skill 时先比较内容，保护个人定制。
 
 安装完成后检查登录状态。如果尚未登录，引导我在自己的交互终端执行
@@ -38,7 +39,7 @@ AI 需要具备终端工具才能执行安装。CLI 和 Skill 应安装在它实
 
 先检查 Node.js 版本，再优先从 GitHub 下载固定发布包。GitHub 下载失败时，再使用公开 npm 包：
 
-GitHub 发布包：
+GitHub 发布包：[下载 1.2.3](https://github.com/idockai/idock-cli/raw/refs/heads/main/packages/gdpisen-idock-cli-1.2.3.tgz)。macOS / Linux：
 
 ```sh
 curl -fL https://github.com/idockai/idock-cli/raw/refs/heads/main/packages/gdpisen-idock-cli-1.2.3.tgz -o gdpisen-idock-cli-1.2.3.tgz
@@ -55,21 +56,23 @@ npm.cmd install -g .\gdpisen-idock-cli-1.2.3.tgz --ignore-scripts
 idock.cmd --version
 ```
 
-GitHub 下载失败时的 npm 备用安装：
+GitHub 下载失败时的 npm 备用安装：当前 npm 最新版为 1.2.2，1.2.3 尚未发布。备用安装后设置正式服务地址；更换地址后需要重新登录。
 
 ```sh
 node --version
-npm install -g @gdpisen/idock-cli@1.2.3 --registry=https://registry.npmjs.org/
+npm install -g @gdpisen/idock-cli@latest --registry=https://registry.npmjs.org/
+idock config set endpoint https://app.pisenidock.com/user
 idock --version
 idock --help
 ```
 
-服务器地址由发布者配置在包内，普通用户无需输入服务器地址或用户 ID。本仓库提供安装说明和 [完整 Skill](skill/idock-cli/)，CLI 通过 npm 包安装。
+GitHub 1.2.3 包已配置正式服务器地址，普通用户无需输入服务器地址或用户 ID。本仓库提供 CLI 安装包和 [完整 Skill](skill/idock-cli/)；GitHub 下载的 tgz 同样使用 npm 安装，无需该版本已发布到 npm registry。
 
 Windows PowerShell 如果拦截 `npm.ps1` 或 `idock.ps1`，分别使用 `npm.cmd` 和 `idock.cmd`，无需修改系统执行策略。例如：
 
 ```powershell
-npm.cmd install -g @gdpisen/idock-cli@1.2.3 --registry=https://registry.npmjs.org/
+npm.cmd install -g @gdpisen/idock-cli@latest --registry=https://registry.npmjs.org/
+idock.cmd config set endpoint https://app.pisenidock.com/user
 idock.cmd --version
 ```
 
@@ -205,9 +208,7 @@ idock schema
 
 ## 升级
 
-```sh
-npm install -g @gdpisen/idock-cli@latest --registry=https://registry.npmjs.org/
-```
+按“安装 CLI”重新下载 GitHub 最新安装包并安装；GitHub 下载失败时再使用 npm 备用步骤。以 `idock --version` 确认实际版本。
 
 升级 CLI 后，重新运行相应宿主的 Skill 安装命令。目标已有不同内容时先比较并保留个人定制；确定使用发行文件替换后，再给安装器添加 `--force`。已有登录状态有效时可以继续使用。
 
