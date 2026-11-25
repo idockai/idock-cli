@@ -36,11 +36,30 @@ AI 需要具备终端工具才能执行安装。CLI 和 Skill 应安装在它实
 
 ## 1. 安装 CLI
 
-先检查 Node.js 版本，再安装公开 npm 包：
+先检查 Node.js 版本，再优先从 GitHub 下载固定发布包。GitHub 下载失败时，再使用公开 npm 包：
+
+GitHub 发布包：
+
+```sh
+curl -fL https://github.com/idockai/idock-cli/raw/refs/heads/main/packages/gdpisen-idock-cli-1.2.3.tgz -o gdpisen-idock-cli-1.2.3.tgz
+npm install -g ./gdpisen-idock-cli-1.2.3.tgz --ignore-scripts
+idock --version
+```
+
+Windows PowerShell：
+
+```powershell
+$packageUrl = 'https://github.com/idockai/idock-cli/raw/refs/heads/main/packages/gdpisen-idock-cli-1.2.3.tgz'
+Invoke-WebRequest -Uri $packageUrl -OutFile .\gdpisen-idock-cli-1.2.3.tgz
+npm.cmd install -g .\gdpisen-idock-cli-1.2.3.tgz --ignore-scripts
+idock.cmd --version
+```
+
+GitHub 下载失败时的 npm 备用安装：
 
 ```sh
 node --version
-npm install -g @gdpisen/idock-cli --registry=https://registry.npmjs.org/
+npm install -g @gdpisen/idock-cli@1.2.3 --registry=https://registry.npmjs.org/
 idock --version
 idock --help
 ```
@@ -50,7 +69,7 @@ idock --help
 Windows PowerShell 如果拦截 `npm.ps1` 或 `idock.ps1`，分别使用 `npm.cmd` 和 `idock.cmd`，无需修改系统执行策略。例如：
 
 ```powershell
-npm.cmd install -g @gdpisen/idock-cli --registry=https://registry.npmjs.org/
+npm.cmd install -g @gdpisen/idock-cli@1.2.3 --registry=https://registry.npmjs.org/
 idock.cmd --version
 ```
 
