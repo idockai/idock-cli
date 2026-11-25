@@ -16,7 +16,7 @@
 
 ```text
 请帮我安装 iDock CLI（idock），项目地址：
-https://github.com/mu-qiao/idock-cli
+https://github.com/idockai/idock-cli
 
 请先阅读 README 中的安装和 Agent Skill 配置说明，在当前 Agent 实际
 执行命令的环境安装 @gdpisen/idock-cli，并配置当前 AI 的 idock-cli Skill。
@@ -45,7 +45,7 @@ idock --version
 idock --help
 ```
 
-服务器地址由发布者配置在包内，普通用户无需输入服务器地址或用户 ID。本仓库提供安装和使用说明，CLI 及完整 Skill 文件通过 npm 包分发，安装时无需克隆服务端仓库。
+服务器地址由发布者配置在包内，普通用户无需输入服务器地址或用户 ID。本仓库提供安装说明和 [完整 Skill](skill/idock-cli/)，CLI 通过 npm 包安装。
 
 Windows PowerShell 如果拦截 `npm.ps1` 或 `idock.ps1`，分别使用 `npm.cmd` 和 `idock.cmd`，无需修改系统执行策略。例如：
 
@@ -57,6 +57,18 @@ idock.cmd --version
 如果以前安装过旧的无 scope 包 `idock-cli`，遇到同名命令冲突时，可先执行 `npm uninstall -g idock-cli`，再安装 `@gdpisen/idock-cli`。不需要用 `--force` 覆盖其它包的命令入口。
 
 ## 2. 配置 Agent Skill
+
+### 从本仓库获取 Skill
+
+完整目录为 [skill/idock-cli](skill/idock-cli/)，包含三个文件：
+
+- [SKILL.md](skill/idock-cli/SKILL.md)：技能说明。
+- [agents/openai.yaml](skill/idock-cli/agents/openai.yaml)：界面元数据。
+- [references/workflows.md](skill/idock-cli/references/workflows.md)：调用工作流。
+
+下载或克隆本仓库后，将整个 `skill/idock-cli` 目录复制到宿主的技能父目录中，保留内部结构。已有同名技能时先比较并保留个人修改。也可以使用下面的 npm 包安装器。
+
+Skill 依赖已安装的 `idock` 命令和用户自己的登录状态；仅复制 Skill 不会安装 CLI。
 
 Skill 随 npm 包提供。先用 `npm root -g` 找到全局模块目录，包路径为该目录下的 `@gdpisen/idock-cli`，安装脚本为 `scripts/install-skill.mjs`。
 
